@@ -7,17 +7,14 @@ module.exports = {
   extends: [
     // 使用vue3 规则
     'plugin:vue/vue3-strongly-recommended',
-    'standard'
+    'standard',
+    'prettier'
   ],
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
-  plugins: [
-    'vue',
-    '@typescript-eslint'
-  ],
-  rules: {
-  }
+  plugins: ['vue', '@typescript-eslint'],
+  rules: {}
 }
