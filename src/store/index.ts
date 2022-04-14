@@ -1,17 +1,15 @@
-import { createStore } from 'vuex'
+import { defineStore } from 'pinia'
 
-// 创建一个新的 store 实例
-const store = createStore({
-  state() {
+const appStore = defineStore('app', {
+  state: () => {
     return {
-      count: 0
+      count: 0,
+      name: 'Eduardo',
+      isAdmin: true
     }
   },
-  mutations: {
-    increment(state) {
-      state.count++
-    }
-  }
+  getters: {},
+  actions: {}
 })
 
-export default store
+export default appStore

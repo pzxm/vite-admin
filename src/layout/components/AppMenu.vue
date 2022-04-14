@@ -8,7 +8,7 @@
     router
   >
     <el-menu-item index="/">
-      <el-icon><icon-menu /></el-icon>
+      <el-icon><location /></el-icon>
       <span>首页</span>
     </el-menu-item>
     <el-sub-menu index="">

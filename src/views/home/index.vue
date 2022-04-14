@@ -1,11 +1,16 @@
 <template>
   <h1>首页</h1>
-  <el-button>测试按钮</el-button>
-  <el-date-picker v-model="value1" type="date" placeholder="Pick a day" />
+  <p>{{ useStore.count }}</p>
+  <el-button @click="changeCount()">测试按钮</el-button>
+  <el-date-picker type="date" placeholder="Pick a day" />
 </template>
 
 <script lang="ts" setup>
-const value1 = ''
+import appStore from '@/store/index'
+const useStore = appStore()
+const changeCount = () => {
+  useStore.count++
+}
 </script>
 
 <style lang="scss" scoped>
