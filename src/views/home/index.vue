@@ -1,15 +1,15 @@
 <template>
   <h1>首页</h1>
-  <p>{{ useStore.count }}</p>
+  <p>{{ store.count }}</p>
   <el-button @click="changeCount()">测试按钮</el-button>
   <el-date-picker type="date" placeholder="Pick a day" />
 </template>
 
 <script lang="ts" setup>
-import appStore from '@/store/index'
-const useStore = appStore()
+import useStore from '@/store/index'
+const store = useStore()
 const changeCount = () => {
-  useStore.count++
+  store.count++
 }
 </script>
 

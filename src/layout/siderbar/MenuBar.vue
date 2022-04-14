@@ -5,13 +5,15 @@
     class="el-menu-vertical-demo"
     default-active="2"
     text-color="#fff"
+    :unique-opened="true"
+    :collapse="isCollapse"
     router
   >
     <el-menu-item index="/">
       <el-icon><location /></el-icon>
       <span>首页</span>
     </el-menu-item>
-    <el-sub-menu index="">
+    <el-sub-menu index="/system">
       <template #title>
         <el-icon><location /></el-icon>
         <span>系统管理</span>
@@ -46,10 +48,21 @@
   </el-menu>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import useStore from '@/store/index'
+import { computed } from 'vue'
+const store = useStore()
+// 获取pinia中的isCollapse属性
+const isCollapse = computed(() => store.getIsCollapse)
+</script>
 
 <style lang="scss" scoped>
 .el-menu {
   border-right: none;
+}
+
+.el-menu:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

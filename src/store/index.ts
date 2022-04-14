@@ -1,15 +1,23 @@
 import { defineStore } from 'pinia'
 
-const appStore = defineStore('app', {
+const useStore = defineStore('app', {
   state: () => {
     return {
       count: 0,
       name: 'Eduardo',
-      isAdmin: true
+      isCollapse: false
     }
   },
-  getters: {},
-  actions: {}
+  getters: {
+    getIsCollapse(): boolean {
+      return this.isCollapse
+    }
+  },
+  actions: {
+    setIsCollapse(collapse: boolean) {
+      this.isCollapse = collapse
+    }
+  }
 })
 
-export default appStore
+export default useStore
