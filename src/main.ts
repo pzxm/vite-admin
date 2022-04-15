@@ -5,5 +5,8 @@ import { createPinia } from 'pinia'
 // 加载全局样式
 import './styles/index.scss'
 import ElementPlus from './plugins/element-plus'
+import piniaPersist from 'pinia-plugin-persist'
 
-createApp(App).use(router).use(createPinia()).use(ElementPlus).mount('#app')
+const pinia = createPinia()
+pinia.use(piniaPersist)
+createApp(App).use(router).use(pinia).use(ElementPlus).mount('#app')

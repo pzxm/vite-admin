@@ -1,15 +1,19 @@
 <template>
   <h1>首页</h1>
-  <p>{{ store.count }}</p>
-  <el-button @click="changeCount()">测试按钮</el-button>
+  <el-button @click="getUser">获取用户信息</el-button>
+  <el-button @click="logout1">退出登录1</el-button>
   <el-date-picker type="date" placeholder="Pick a day" />
 </template>
 
 <script lang="ts" setup>
-import useStore from '@/store/index'
-const store = useStore()
-const changeCount = () => {
-  store.count++
+import { logout, getUserInfo } from '@/api/user'
+const getUser = () => {
+  getUserInfo()
+}
+const logout1 = () => {
+  logout()
+  logout()
+  logout()
 }
 </script>
 

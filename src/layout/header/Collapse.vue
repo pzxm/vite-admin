@@ -10,7 +10,7 @@ import { computed } from 'vue'
 const store = useStore()
 
 // 获取pinia中的isCollapse属性
-const isCollapse = computed(() => store.getIsCollapse)
+const isCollapse = computed(() => store.isCollapse)
 
 // 重新设置pinia中的isCollapse
 const changeCollapse = () => {

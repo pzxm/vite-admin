@@ -1,79 +1,36 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import AppLayout from '@/layout/index.vue'
+import systemRouter from '@/router/modules/system'
+import nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
+import useStore from '@/store'
+import { LOGIN_PAGE_NAME, LOGIN_PATH, HOME_PAGE_NAME } from '@/constants/route'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: AppLayout,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         // 默认子路由
         path: '',
-        name: 'home',
+        name: HOME_PAGE_NAME,
         component: () => import('../views/home/index.vue'),
         meta: {
           title: '首页',
           icon: 'Menu',
           roles: ['sys:manage']
         }
-      }
+      },
+      systemRouter
     ]
   },
   {
-    path: '/system',
-    component: AppLayout,
-    name: 'system',
-    meta: {
-      title: '系统管理',
-      icon: 'Menu',
-      roles: ['sys:manage']
-    },
-    children: [
-      {
-        path: '/dept',
-        component: () => import('../views/dept/index.vue'),
-        name: '部门管理',
-        meta: {
-          title: '部门管理',
-          icon: 'Menu',
-          roles: ['sys:dept']
-        }
-      },
-      {
-        path: '/user',
-        component: () => import('../views/user/index.vue'),
-        name: '用户管理',
-        meta: {
-          title: '用户管理',
-          icon: 'Menu',
-          roles: ['sys:user']
-        }
-      },
-      {
-        path: '/menu',
-        component: () => import('../views/menu/index.vue'),
-        name: '菜单管理',
-        meta: {
-          title: '菜单管理',
-          icon: 'Menu',
-          roles: ['sys:menu']
-        }
-      },
-      {
-        path: '/role',
-        component: () => import('../views/role/index.vue'),
-        name: '角色管理',
-        meta: {
-          title: '角色管理',
-          icon: 'Menu',
-          roles: ['sys:role']
-        }
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'login',
+    path: LOGIN_PATH,
+    name: LOGIN_PAGE_NAME,
     component: () => import('../views/login/index.vue')
   }
 ]
@@ -83,6 +40,27 @@ const router = createRouter({
   history: createWebHashHistory(),
   // 路由规则
   routes
+})
+
+// 全局路由前置守卫
+router.beforeEach((to, from) => {
+  // 开始进度条
+  nprogress.start()
+  // 判断是否需要登录才能访问
+  if (to.meta.requiresAuth && !useStore().accessToken) {
+    return {
+      // 返回到登录页
+      path: LOGIN_PATH,
+      // 保存当前访问路由，登录后直接跳转到该页面
+      query: { redirect: to.fullPath }
+    }
+  }
+})
+
+// 全局路由后置钩子
+router.afterEach((to, from) => {
+  // 结束进度条
+  nprogress.done()
 })
 
 export default router

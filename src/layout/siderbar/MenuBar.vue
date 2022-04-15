@@ -3,7 +3,7 @@
     active-text-color="#ffd04b"
     background-color="#304156"
     class="el-menu-vertical-demo"
-    default-active="2"
+    :default-active="path"
     text-color="#fff"
     :unique-opened="true"
     :collapse="isCollapse"
@@ -50,10 +50,14 @@
 
 <script lang="ts" setup>
 import useStore from '@/store/index'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 const store = useStore()
+const route = useRoute()
+const path = ref(route.path)
+
 // 获取pinia中的isCollapse属性
-const isCollapse = computed(() => store.getIsCollapse)
+const isCollapse = computed(() => store.isCollapse)
 </script>
 
 <style lang="scss" scoped>

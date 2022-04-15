@@ -2,19 +2,31 @@
  * 用户相关请求
  */
 import request from '@/utils/request'
-
-interface UserInfo {
-  name: string
-  nickname: string
-  birthday: string
-  gender: number
-  tel: string
-}
+import { LoginResult, UserInfo } from './types/common'
 
 export const getUserInfo = () => {
   return request<UserInfo>({
     method: 'GET',
-    url: '/channel/user/info',
+    url: '/userinfo',
     params: { id: 22 }
+  })
+}
+
+export const login = (data: any) => {
+  return request<LoginResult>({
+    method: 'POST',
+    url: '/login',
+    data: data
+  })
+}
+
+export const logout = () => {
+  return request<{
+    code: number
+    msg: string
+    data: null
+  }>({
+    method: 'POST',
+    url: '/logout'
   })
 }

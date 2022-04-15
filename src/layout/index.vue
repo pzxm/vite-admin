@@ -29,7 +29,7 @@ import AppHeader from '@/layout/header/index.vue'
 
 .el-header,
 .el-footer {
-  background-color: #ffff;
+  background-color: #ffffff;
   color: #333;
   line-height: 30px;
 }
