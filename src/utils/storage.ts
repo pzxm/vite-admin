@@ -32,3 +32,7 @@ export const setItem = (key: string, value: object | string | null) => {
   }
   window.localStorage.setItem(key, value)
 }
+
+export const clearAll = () => {
+  window.localStorage.clear()
+}

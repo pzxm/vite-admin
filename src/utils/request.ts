@@ -11,7 +11,6 @@ import { LOGIN_PAGE_NAME } from '@/constants/route'
 
 // 环境变量
 const BASE_URL = import.meta.env.VITE_API_BASE_URL
-const store = userStore()
 
 const request: AxiosInstance = axios.create({
   baseURL: BASE_URL
@@ -20,7 +19,7 @@ const request: AxiosInstance = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const accessToken = store.accessToken
+    const accessToken = userStore().accessToken
     // 统一设置认证token
     if (accessToken) {
       config.headers!.Authorization = `Bearer ${accessToken}`
@@ -55,7 +54,7 @@ request.interceptors.response.use(
       })
         .then(() => {
           // 清除本地过期登录信息
-          store.reset()
+          userStore().reset()
           // 跳转到登录页
           router.push({
             name: LOGIN_PAGE_NAME,

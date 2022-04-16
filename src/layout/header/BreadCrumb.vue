@@ -16,4 +16,9 @@ const routes = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-breadcrumb {
+  font-size: 14px;
+  padding-top: 12px;
+}
+</style>

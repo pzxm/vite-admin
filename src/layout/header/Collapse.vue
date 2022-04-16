@@ -21,6 +21,6 @@ const changeCollapse = () => {
 <style lang="scss" scoped>
 .el-icon {
   cursor: pointer;
-  margin-right: 15px;
+  margin: 10px 10px;
 }
 </style>

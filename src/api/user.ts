@@ -20,12 +20,8 @@ export const login = (data: any) => {
   })
 }
 
-export const logout = () => {
-  return request<{
-    code: number
-    msg: string
-    data: null
-  }>({
+export const handleLogout = () => {
+  return request({
     method: 'POST',
     url: '/logout'
   })

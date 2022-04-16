@@ -2,7 +2,7 @@
   <div class="common-layout">
     <el-container>
       <el-aside>
-        <menu-bar />
+        <side-bar />
       </el-aside>
       <el-container>
         <el-header>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import MenuBar from '@/layout/siderbar/MenuBar.vue'
+import SideBar from '@/layout/siderbar/index.vue'
 import AppHeader from '@/layout/header/index.vue'
 import AppTabs from '@/layout/tabs/index.vue'
 </script>

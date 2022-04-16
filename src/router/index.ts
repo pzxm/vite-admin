@@ -61,12 +61,9 @@ router.beforeEach((to, from) => {
 // 全局路由后置钩子
 router.afterEach((to, from) => {
   console.log('目的路由地址：' + to.fullPath)
-  // 设置当前激活菜单
   const store = useStore()
-  store.setActiveMenu(to.fullPath)
-
   // 添加Tab选项卡
-  const key = to.fullPath
+  const key = to.path
   const label = to.meta.title || ''
   const name = key
   const tabPane: TabPane = { key, label, name }

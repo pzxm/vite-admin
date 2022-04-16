@@ -9,7 +9,6 @@ const useStore = defineStore('app', {
       isCollapse: false,
       userInfo: {} as UserInfo | null,
       accessToken: '',
-      activeMenu: '',
       activeTab: '',
       tabList: [{ key: '/', label: '首页', name: '/' }] as TabPane[],
       count: 0
@@ -29,9 +28,6 @@ const useStore = defineStore('app', {
     },
     setAccessToken(accessToken: string) {
       this.accessToken = accessToken
-    },
-    setActiveMenu(activeMenu: string) {
-      this.activeMenu = activeMenu
     },
     addTab(tabPane: TabPane) {
       if (this.tabList.some((item) => item.key === tabPane.key)) return

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { logout, getUserInfo } from '@/api/user'
+import { handleLogout, getUserInfo } from '@/api/user'
 import useStore from '@/store'
 import { computed, ref } from 'vue'
 
@@ -23,9 +23,7 @@ const getUser = () => {
   getUserInfo()
 }
 const logout1 = () => {
-  logout()
-  logout()
-  logout()
+  handleLogout()
 }
 </script>
 
