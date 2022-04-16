@@ -1,38 +1,16 @@
-import { UserInfo } from '@/api/types/common'
 import { ROOT_PATH } from '@/constants/route'
 import { TabPane } from '@/types/tab'
 import { defineStore } from 'pinia'
 
-const useStore = defineStore('app', {
+const tabStore = defineStore('app', {
   state: () => {
     return {
-      isCollapse: false,
-      userInfo: {} as UserInfo | null,
-      accessToken: '',
-      activeMenu: '',
       activeTab: '',
-      tabList: [{ key: '/', label: '首页', name: '/' }] as TabPane[],
-      count: 0
+      tabList: [{ key: '/', label: '首页', name: '/' }] as TabPane[]
     }
   },
-  getters: {
-    isAuthenticated(): string {
-      return this.accessToken
-    }
-  },
+  getters: {},
   actions: {
-    setIsCollapse(collapse: boolean) {
-      this.isCollapse = collapse
-    },
-    setUser(userInfo: UserInfo) {
-      this.userInfo = userInfo
-    },
-    setAccessToken(accessToken: string) {
-      this.accessToken = accessToken
-    },
-    setActiveMenu(activeMenu: string) {
-      this.activeMenu = activeMenu
-    },
     addTab(tabPane: TabPane) {
       if (this.tabList.some((item) => item.key === tabPane.key)) return
       this.tabList.push(tabPane)
@@ -81,4 +59,4 @@ const useStore = defineStore('app', {
   }
 })
 
-export default useStore
+export default tabStore

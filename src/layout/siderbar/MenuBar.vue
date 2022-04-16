@@ -50,14 +50,14 @@
 
 <script lang="ts" setup>
 import useStore from '@/store/index'
-import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 const store = useStore()
-const route = useRoute()
-const path = ref(route.path)
+// const path = ref<string>(store.activeMenu)
 
 // 获取pinia中的isCollapse属性
 const isCollapse = computed(() => store.isCollapse)
+
+const path = computed(() => store.activeMenu)
 </script>
 
 <style lang="scss" scoped>

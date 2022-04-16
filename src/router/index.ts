@@ -5,6 +5,7 @@ import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import useStore from '@/store'
 import { LOGIN_PAGE_NAME, LOGIN_PATH, HOME_PAGE_NAME } from '@/constants/route'
+import { TabPane } from '@/types/tab'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -59,6 +60,22 @@ router.beforeEach((to, from) => {
 
 // 全局路由后置钩子
 router.afterEach((to, from) => {
+  console.log('目的路由地址：' + to.fullPath)
+  // 设置当前激活菜单
+  const store = useStore()
+  store.setActiveMenu(to.fullPath)
+
+  // 添加Tab选项卡
+  const key = to.fullPath
+  const label = to.meta.title || ''
+  const name = key
+  const tabPane: TabPane = { key, label, name }
+  if (!to.query.redirect) {
+    store.addTab(tabPane)
+  }
+  // 设置当前激活Tab选项
+  store.setActiveTab(name)
+
   // 结束进度条
   nprogress.done()
 })

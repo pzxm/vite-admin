@@ -12,7 +12,7 @@ import BreadCrumb from '@/layout/header/BreadCrumb.vue'
 
 <style lang="scss" scoped>
 .nav-header {
-  padding: 20px 0px;
+  padding: 20px 0px 20px 20px;
   display: flex;
   align-items: center;
 }

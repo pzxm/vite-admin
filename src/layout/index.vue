@@ -9,6 +9,7 @@
           <app-header />
         </el-header>
         <el-main>
+          <app-tabs />
           <!-- 子路由出口 -->
           <router-view />
         </el-main>
@@ -20,6 +21,7 @@
 <script lang="ts" setup>
 import MenuBar from '@/layout/siderbar/MenuBar.vue'
 import AppHeader from '@/layout/header/index.vue'
+import AppTabs from '@/layout/tabs/index.vue'
 </script>
 
 <style lang="scss" scoped>
@@ -29,6 +31,7 @@ import AppHeader from '@/layout/header/index.vue'
 
 .el-header,
 .el-footer {
+  --el-header-padding: 0;
   background-color: #ffffff;
   color: #333;
   line-height: 30px;
@@ -41,7 +44,11 @@ import AppHeader from '@/layout/header/index.vue'
 }
 
 .el-main {
+  --el-main-padding: 0px;
   background-color: #e9eef3;
   color: #333;
+}
+.app-tabs {
+  padding-top: 0px;
 }
 </style>

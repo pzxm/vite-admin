@@ -1,5 +1,5 @@
 <template>
-  <el-icon @click="changeCollapse" size="large">
+  <el-icon @click="changeCollapse" size="20px">
     <component :is="isCollapse ? 'expand' : 'fold'" />
   </el-icon>
 </template>
