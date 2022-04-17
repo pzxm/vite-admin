@@ -1,6 +1,7 @@
 /**
  * 用户相关请求
  */
+import { MenuInfo } from '@/types/menu'
 import request from '@/utils/request'
 import { LoginResult, UserInfo } from './types/common'
 
@@ -24,5 +25,12 @@ export const handleLogout = () => {
   return request({
     method: 'POST',
     url: '/logout'
+  })
+}
+
+export const getUserMenu = () => {
+  return request<MenuInfo[]>({
+    method: 'GET',
+    url: '/menu'
   })
 }

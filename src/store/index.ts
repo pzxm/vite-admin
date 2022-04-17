@@ -1,5 +1,6 @@
 import { UserInfo } from '@/api/types/common'
 import { ROOT_PATH } from '@/constants/route'
+import { MenuInfo } from '@/types/menu'
 import { TabPane } from '@/types/tab'
 import { defineStore } from 'pinia'
 
@@ -11,7 +12,8 @@ const useStore = defineStore('app', {
       accessToken: '',
       activeTab: '',
       tabList: [{ key: '/', label: '首页', name: '/' }] as TabPane[],
-      count: 0
+      count: 0,
+      menuList: [] as MenuInfo[]
     }
   },
   getters: {
@@ -65,6 +67,9 @@ const useStore = defineStore('app', {
     },
     tabOnlyOneOrHome() {
       return this.activeTab === ROOT_PATH || this.tabList.length === 1
+    },
+    setMenuList(menuList: MenuInfo[]) {
+      this.menuList = menuList
     },
     reset() {
       this.$reset()
