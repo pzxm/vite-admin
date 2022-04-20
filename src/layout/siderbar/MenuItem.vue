@@ -2,25 +2,28 @@
   <template v-for="menu in menus" :key="menu.path">
     <el-sub-menu
       v-if="menu.children && menu.children.length > 0"
-      :index="menu.path"
+      :index="basePath + menu.path"
     >
       <template #title>
         <!-- 动态组件的使用方式 -->
-        <component class="icons" :is="menu.meta.icon" />
+        <component class="icons" :is="menu.icon" />
         <!-- 方式二 -->
         <!-- <Icon class="icons" :icon="menu.mata.icon"></Icon> -->
-        <span>{{ menu.meta.title }}</span>
+        <span>{{ menu.name }}</span>
       </template>
-      <menu-item :menus="menu.children"></menu-item>
+      <menu-item
+        :menus="menu.children"
+        :base-path="menu.path + '/'"
+      ></menu-item>
     </el-sub-menu>
 
-    <el-menu-item v-else :index="menu.path">
+    <el-menu-item v-else :index="basePath + menu.path">
       <i
-        v-if="menu.meta.icon && menu.meta.icon.includes('el-icon')"
-        :class="menu.meta.icon"
+        v-if="menu.icon && menu.icon.includes('el-icon')"
+        :class="menu.icon"
       ></i>
-      <component class="icons" v-else :is="menu.meta.icon" />
-      <template #title>{{ menu.meta.title }}</template>
+      <component class="icons" v-else :is="menu.icon" />
+      <template #title>{{ menu.name }}</template>
     </el-menu-item>
   </template>
 </template>
@@ -33,6 +36,12 @@ defineProps({
     type: Array as () => Array<MenuInfo>,
     required: true,
     default: () => []
+  },
+  // 基础路径（多级菜单时拼接菜单路由需要）
+  basePath: {
+    type: String,
+    required: false,
+    default: ''
   }
 })
 </script>

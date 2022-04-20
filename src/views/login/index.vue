@@ -89,8 +89,8 @@ const submitForm = async () => {
       return getUserMenu()
     })
     .then((data) => {
-      // 3.获取菜单信息，添加动态路由
-      console.log('菜单信息：' + JSON.stringify(data))
+      // 3.获取菜单信息，存储到pinia中
+      // 渲染菜单时使用
       store.setMenuList(data)
     })
     .then(() => {

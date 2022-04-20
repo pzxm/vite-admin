@@ -7,7 +7,7 @@ import axios, {
 import { ElMessage, ElMessageBox } from 'element-plus'
 import userStore from '@/store'
 import router from '@/router/'
-import { LOGIN_PAGE_NAME } from '@/constants/route'
+import { LOGIN_PATH } from '@/constants/route'
 
 // 环境变量
 const BASE_URL = import.meta.env.VITE_API_BASE_URL
@@ -57,7 +57,7 @@ request.interceptors.response.use(
           userStore().reset()
           // 跳转到登录页
           router.push({
-            name: LOGIN_PAGE_NAME,
+            path: LOGIN_PATH,
             query: {
               redirect: router.currentRoute.value.fullPath
             }

@@ -39,7 +39,7 @@ const useStore = defineStore('app', {
       this.activeTab = activeTab
     },
     removeTab(targetName: string) {
-      if (this.tabOnlyOneOrHome()) return
+      if (this.activeTab === ROOT_PATH) return
       const tabs = this.tabList
       let activeName = this.activeTab
       if (activeName === targetName) {
@@ -56,17 +56,12 @@ const useStore = defineStore('app', {
       this.tabList = tabs.filter((tab) => tab.name !== targetName)
     },
     closAllTab() {
-      if (this.tabOnlyOneOrHome()) return
       this.tabList = this.tabList.filter((item) => item.key === ROOT_PATH)
     },
     closeOtherTab() {
-      if (this.tabOnlyOneOrHome()) return
       this.tabList = this.tabList.filter(
         (item) => item.key === ROOT_PATH || item.key === this.activeTab
       )
-    },
-    tabOnlyOneOrHome() {
-      return this.activeTab === ROOT_PATH || this.tabList.length === 1
     },
     setMenuList(menuList: MenuInfo[]) {
       this.menuList = menuList

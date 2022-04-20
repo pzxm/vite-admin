@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import { handleLogout } from '@/api/user'
-import { LOGIN_PAGE_NAME } from '@/constants/route'
+import { LOGIN_PATH } from '@/constants/route'
 import router from '@/router/'
 import useStore from '@/store'
 import { ElMessageBox } from 'element-plus'
@@ -32,11 +32,16 @@ const logout = () => {
       handleLogout().then(() => {
         // 清除pinia数据
         useStore().reset()
-        router.push(LOGIN_PAGE_NAME)
+        router.push({
+          path: LOGIN_PATH,
+          query: {
+            redirect: router.currentRoute.value.fullPath
+          }
+        })
       })
     })
     .catch((reason) => {
-      console.log('取消退出登录' + reason)
+      console.log('退出登录异常' + reason)
     })
 }
 </script>

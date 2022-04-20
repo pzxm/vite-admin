@@ -13,11 +13,13 @@ import { handleLogout, getUserInfo } from '@/api/user'
 import useStore from '@/store'
 import { computed, ref } from 'vue'
 
-const count = ref<number>(useStore().count)
+const store = useStore()
+
+const count = ref<number>(store.count)
 const addCount = () => {
   count.value++
 }
-const count2 = computed(() => useStore().count)
+const count2 = computed(() => store.count)
 
 const getUser = () => {
   getUserInfo()

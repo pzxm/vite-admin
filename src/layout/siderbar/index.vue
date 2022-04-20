@@ -15,7 +15,6 @@
 
 <script lang="ts" setup>
 import useStore from '@/store/index'
-// import { computed, reactive } from 'vue'
 import { computed } from 'vue'
 import MenuItem from '@/layout/siderbar/MenuItem.vue'
 import { MenuInfo } from '@/types/menu'
@@ -27,55 +26,6 @@ const route = useRoute()
 const isCollapse = computed(() => store.isCollapse)
 const activeMenu = computed(() => route.path)
 const menus = computed<MenuInfo[]>(() => store.menuList)
-// const menus = reactive<Array<MenuInfo>>([
-//   {
-//     "path": "/",
-//     "meta": {
-//       "title": "首页",
-//       "icon": "HomeFilled"
-//     },
-//     "children": []
-//   },
-//   {
-//     "path": "/system",
-//     "meta": {
-//       "title": "系统管理",
-//       "icon": "Setting"
-//     },
-//     "children": [
-//       {
-//         "path": "/user",
-//         "children": [],
-//         "meta": {
-//           "title": "用户管理",
-//           "icon": "User"
-//         }
-//       },
-//       {
-//         "path": "/menu",
-//         "children": [],
-//         "meta": {
-//           "title": "菜单管理",
-//           "icon": "Menu"
-//         }
-//       },
-//       {
-//         "path": "/role",
-//         "meta": {
-//           "title": "角色管理",
-//           "icon": "View"
-//         }
-//       },
-//       {
-//         "path": "/dept",
-//         "meta": {
-//           "title": "部门管理",
-//           "icon": "Operation"
-//         }
-//       }
-//     ]
-//   }
-// ])
 </script>
 
 <style lang="scss" scoped>
