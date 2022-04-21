@@ -1,5 +1,6 @@
 import { MenuInfo } from '@/types/menu'
 import { RouteRecordRaw } from 'vue-router'
+const modules = import.meta.glob('../**/*.vue')
 
 /**
  * 将菜单转为路由
@@ -16,25 +17,40 @@ export function toRoutes(
   return menuList.map(({ name, path, icon, children }) => ({
     name: name,
     path: path,
-    component: () => {
-      // 首页
-      if (path === '/' || (children && children.length > 0)) {
-        return import('../layout/index.vue')
-      } else {
-        // 适配两种格式path user、/system/user
-        return import(
-          /* @vite-ignore */ path.indexOf('/') > -1
-            ? `../views${path}/index.vue`
-            : `../views${basePath}/${path}/index.vue`
-        )
-      }
-    },
+    redirect: children && children.length > 0 ? children[0].path : undefined,
+    component: getComponent(path, children, basePath),
     children: toRoutes(children || [], path),
     meta: {
       icon: icon,
       title: name
     }
   }))
+}
+
+/**
+ * 获取根据路由地址组件
+ * @param path 路由地址
+ * @param children 下级菜单
+ * @param basePath 上级路由地址
+ * @returns 组件
+ */
+function getComponent(
+  path: string,
+  children: MenuInfo[] | undefined,
+  basePath: string
+) {
+  let view = null
+  // 首页
+  if (path === '/' || (children && children.length > 0)) {
+    view = '../layout/index.vue'
+  } else {
+    // 适配两种格式path（带'/':表示路由地址 和不带'/':表示下级路由地址） user、/system/user
+    view =
+      path.indexOf('/') > -1
+        ? `../views${path}/index.vue`
+        : `../views${basePath}/${path}/index.vue`
+  }
+  return modules[view]
 }
 
 /**
