@@ -1,39 +1,15 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import AppLayout from '@/layout/index.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import useStore from '@/store'
-import { LOGIN_PAGE_NAME, LOGIN_PATH, HOME_PAGE_NAME } from '@/constants/route'
+import {
+  LOGIN_PATH,
+  ROOT_PATH,
+  NOT_FOUND,
+  STATIC_ROUTE as routes
+} from '@/constants/route'
 import { TabPane } from '@/types/tab'
 import { toRoutes } from '@/utils/menu'
-
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    component: AppLayout,
-    meta: {
-      requiresAuth: true
-    },
-    children: [
-      {
-        // 默认子路由
-        path: '',
-        name: HOME_PAGE_NAME,
-        component: () => import('../views/home/index.vue'),
-        meta: {
-          title: '首页',
-          icon: 'Menu',
-          roles: ['sys:manage']
-        }
-      }
-    ]
-  },
-  {
-    path: LOGIN_PATH,
-    name: LOGIN_PAGE_NAME,
-    component: () => import('../views/login/index.vue')
-  }
-]
 
 const router = createRouter({
   // 路由模式
@@ -67,11 +43,16 @@ router.beforeEach((to, from, next) => {
   } else {
     // 页面刷新且没有匹配到对应路由，动态添加路由
     if (!refreshFlag && to.matched.length === 0) {
-      toRoutes(store.menuList).forEach((route) => {
-        if (!router.hasRoute(route.name as string)) {
-          router.addRoute(route)
-        }
-      })
+      toRoutes(store.menuList)
+        // 过滤首页路由，静态路由中已包含
+        .filter((item) => item.path !== ROOT_PATH)
+        // 404页面添加到动态路由最后，避免刷新页面时出现无法找不到对应路由
+        .concat(NOT_FOUND)
+        .forEach((route) => {
+          if (!router.hasRoute(route.name as string)) {
+            router.addRoute(route)
+          }
+        })
       // 添加动态路由后，替换本次路由，重新导航一次
       next({ ...to, replace: true })
       refreshFlag = true
@@ -89,7 +70,8 @@ router.afterEach((to, from) => {
   const label = to.meta.title || ''
   const name = key
   const tabPane: TabPane = { key, label, name }
-  if (!to.query.redirect && key !== LOGIN_PATH) {
+  // 排除404 和 登录页
+  if (to.name !== NOT_FOUND.name && !to.query.redirect && key !== LOGIN_PATH) {
     store.addTab(tabPane)
   }
   // 设置当前激活Tab选项

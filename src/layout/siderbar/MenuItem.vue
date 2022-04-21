@@ -2,7 +2,7 @@
   <template v-for="menu in menus" :key="menu.path">
     <el-sub-menu
       v-if="menu.children && menu.children.length > 0"
-      :index="basePath + menu.path"
+      :index="menu.path"
     >
       <template #title>
         <!-- 动态组件的使用方式 -->
@@ -17,7 +17,10 @@
       ></menu-item>
     </el-sub-menu>
 
-    <el-menu-item v-else :index="basePath + menu.path">
+    <el-menu-item
+      v-else
+      :index="menu.path.indexOf('/') > -1 ? menu.path : basePath + menu.path"
+    >
       <i
         v-if="menu.icon && menu.icon.includes('el-icon')"
         :class="menu.icon"

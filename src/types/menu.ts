@@ -8,8 +8,4 @@ export interface MenuInfo {
   permission: string
   menuType: number
   sort: number
-  meta: {
-    icon: string
-    title: string
-  }
 }

@@ -39,7 +39,7 @@ const useStore = defineStore('app', {
       this.activeTab = activeTab
     },
     removeTab(targetName: string) {
-      if (this.activeTab === ROOT_PATH) return
+      if (targetName === ROOT_PATH) return
       const tabs = this.tabList
       let activeName = this.activeTab
       if (activeName === targetName) {

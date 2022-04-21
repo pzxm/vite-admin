@@ -57,6 +57,8 @@ import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { IElForm, IFormItemRule } from '@/types/element-plus'
 import { ElMessage } from 'element-plus'
+import { HOME as homeMenu } from '@/utils/menu'
+// import { HOME_PAGE } from '@/utils/menu'
 
 const route = useRoute()
 const router = useRouter()
@@ -89,8 +91,8 @@ const submitForm = async () => {
       return getUserMenu()
     })
     .then((data) => {
-      // 3.获取菜单信息，存储到pinia中
-      // 渲染菜单时使用
+      // 3.获取菜单信息，添加首页菜单并存储到pinia中
+      data.unshift(homeMenu)
       store.setMenuList(data)
     })
     .then(() => {
