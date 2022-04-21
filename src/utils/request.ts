@@ -1,13 +1,8 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import userStore from '@/store'
 import router from '@/router/'
+import userStore from '@/store'
 import { LOGIN_PATH } from '@/constants/route'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
 // 环境变量
 const BASE_URL = import.meta.env.VITE_API_BASE_URL

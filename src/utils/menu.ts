@@ -7,10 +7,7 @@ const modules = import.meta.glob('../**/*.vue')
  * @param menuList 菜单列表
  * @returns 路由列表
  */
-export function toRoutes(
-  menuList: MenuInfo[],
-  basePath: string = ''
-): RouteRecordRaw[] {
+export function toRoutes(menuList: MenuInfo[], basePath: string = ''): RouteRecordRaw[] {
   if (!menuList || menuList.length <= 0) {
     return []
   }
@@ -34,11 +31,7 @@ export function toRoutes(
  * @param basePath 上级路由地址
  * @returns 组件
  */
-function getComponent(
-  path: string,
-  children: MenuInfo[] | undefined,
-  basePath: string
-) {
+function getComponent(path: string, children: MenuInfo[] | undefined, basePath: string) {
   let view = null
   // 首页
   if (path === '/' || (children && children.length > 0)) {
@@ -46,9 +39,7 @@ function getComponent(
   } else {
     // 适配两种格式path（带'/':表示路由地址 和不带'/':表示下级路由地址） user、/system/user
     view =
-      path.indexOf('/') > -1
-        ? `../views${path}/index.vue`
-        : `../views${basePath}/${path}/index.vue`
+      path.indexOf('/') > -1 ? `../views${path}/index.vue` : `../views${basePath}/${path}/index.vue`
   }
   return modules[view]
 }

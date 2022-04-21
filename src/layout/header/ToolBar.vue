@@ -53,7 +53,7 @@ const logout = () => {
   align-items: center;
   width: 120px;
   .el-dropdown {
-    padding-right: 40px;
+    padding-right: 20px;
     padding-left: 0px;
   }
 }
