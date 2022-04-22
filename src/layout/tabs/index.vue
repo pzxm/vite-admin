@@ -1,17 +1,17 @@
 <template>
   <div class="tab-container">
-    <el-tabs
-      :model-value="activeTab"
-      @tab-click="clickBtn"
-      type="card"
-      closable
-      @tab-remove="removeTab"
-    >
-      <el-tab-pane v-for="item in tabList" :key="item.key" :label="item.label" :name="item.name">
-      </el-tab-pane>
-    </el-tabs>
-    <div class="tabs-menu">
-      <el-dropdown>
+    <div class="tab-container__box">
+      <el-tabs
+        type="card"
+        :model-value="activeTab"
+        @tab-click="clickBtn"
+        closable
+        @tab-remove="removeTab"
+      >
+        <el-tab-pane v-for="item in tabList" :key="item.key" :label="item.label" :name="item.name">
+        </el-tab-pane>
+      </el-tabs>
+      <el-dropdown class="tab-container__menu">
         <el-button type="primary" size="default">
           更多<el-icon class="el-icon--right"><arrow-down /></el-icon>
         </el-button>
@@ -72,18 +72,3 @@ const closeAllTab = () => {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.el-tabs {
-  background-color: #ffffff;
-}
-.tab-container {
-  position: relative;
-  padding: 0px, 10px;
-  .tabs-menu {
-    position: absolute;
-    right: 10px;
-    top: 4px;
-  }
-}
-</style>
