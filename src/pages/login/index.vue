@@ -45,7 +45,7 @@ import { HOME as homeMenu } from '@/utils/menu'
 
 const route = useRoute()
 const router = useRouter()
-const store = useStore()
+const { appStore, menuStore } = useStore()
 const loginForm = ref<IElForm | null>(null)
 const checked = ref(true)
 const loding = ref(false)
@@ -67,7 +67,7 @@ const submitForm = async () => {
     .then((res) => {
       loding.value = false
       // 1. 保存token
-      store.setAccessToken(res.token)
+      appStore.setAccessToken(res.token)
     })
     .then(() => {
       // 2. 获取菜单信息、封装动态路由
@@ -76,7 +76,7 @@ const submitForm = async () => {
     .then((data) => {
       // 3.获取菜单信息，添加首页菜单并存储到pinia中
       data.unshift(homeMenu)
-      store.setMenuList(data)
+      menuStore.setMenuList(data)
     })
     .then(() => {
       // 4. 获取路由上的重定向地址，重定向到请求页面

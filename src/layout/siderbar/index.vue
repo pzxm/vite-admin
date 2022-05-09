@@ -20,12 +20,12 @@ import MenuItem from '@/layout/siderbar/MenuItem.vue'
 import { MenuInfo } from '@/types/menu'
 import { useRoute } from 'vue-router'
 
-const store = useStore()
+const { menuStore } = useStore()
 const route = useRoute()
 // 获取pinia中的isCollapse属性
-const isCollapse = computed(() => store.isCollapse)
+const isCollapse = computed(() => menuStore.isCollapse)
 const activeMenu = computed(() => route.path)
-const menus = computed<MenuInfo[]>(() => store.menuList)
+const menus = computed<MenuInfo[]>(() => menuStore.menuList)
 </script>
 
 <style lang="scss" scoped>

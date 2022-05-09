@@ -29,21 +29,21 @@
 <script lang="ts" setup>
 import router from '@/router/'
 import { computed } from 'vue'
-import useStore from '@/store'
+import userStore from '@/store'
 import { ROOT_PATH } from '@/constants/route'
 import { TabPanelName, TabsPaneContext } from 'element-plus'
 
-const store = useStore()
+const { tabStore } = userStore()
 // 当前打开的选项开列表
-const tabList = computed(() => store.tabList)
+const tabList = computed(() => tabStore.tabList)
 // store中存储的当前激活选项卡
-const activeTab = computed(() => store.activeTab)
+const activeTab = computed(() => tabStore.activeTab)
 
 /**
  * 移除Tab选项
  */
 const removeTab = (targetName: TabPanelName | string) => {
-  store.removeTab(targetName as string)
+  tabStore.removeTab(targetName as string)
   // 跳转路由
   router.push(activeTab.value)
 }
@@ -59,14 +59,14 @@ const clickBtn = (tab: TabsPaneContext) => {
  * 关闭其他tab
  */
 const closeOtherTab = () => {
-  store.closeOtherTab()
+  tabStore.closeOtherTab()
 }
 /**
  * 关闭所有tab
  */
 const closeAllTab = () => {
-  store.closAllTab()
-  if (store.activeTab !== ROOT_PATH) {
+  tabStore.closAllTab()
+  if (tabStore.activeTab !== ROOT_PATH) {
     // 跳转回首页
     router.push({ path: ROOT_PATH })
   }

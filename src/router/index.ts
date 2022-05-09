@@ -19,9 +19,9 @@ let refreshFlag = false
 router.beforeEach((to, from, next) => {
   // 开始进度条
   nprogress.start()
-  const store = useStore()
+  const { menuStore, appStore } = useStore()
   // 未登重定向到登录页
-  if (!store.accessToken) {
+  if (!appStore.accessToken) {
     if (to.path === LOGIN_PATH) {
       // 访问登录页直接放行
       next()
@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
   } else {
     // 页面刷新且没有匹配到对应路由，动态添加路由
     if (!refreshFlag && to.matched.length === 0) {
-      toRoutes(store.menuList)
+      toRoutes(menuStore.menuList)
         // 过滤首页路由，静态路由中已包含
         .filter((item) => item.path !== ROOT_PATH)
         // 404页面添加到动态路由最后，避免刷新页面时出现无法找不到对应路由
@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
 
 // 全局路由后置钩子
 router.afterEach((to, from) => {
-  const store = useStore()
+  const { tabStore } = useStore()
   // 添加Tab选项卡
   const key = to.path
   const label = to.meta.title || ''
@@ -67,10 +67,10 @@ router.afterEach((to, from) => {
   const tabPane: TabPane = { key, label, name }
   // 排除404 和 登录页
   if (to.name !== NOT_FOUND.name && !to.query.redirect && key !== LOGIN_PATH) {
-    store.addTab(tabPane)
+    tabStore.addTab(tabPane)
   }
   // 设置当前激活Tab选项
-  store.setActiveTab(name)
+  tabStore.setActiveTab(name)
 
   // 结束进度条
   nprogress.done()

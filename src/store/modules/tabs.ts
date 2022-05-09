@@ -2,7 +2,7 @@ import { ROOT_PATH } from '@/constants/route'
 import { TabPane } from '@/types/tab'
 import { defineStore } from 'pinia'
 
-const tabStore = defineStore('app', {
+const useTabStore = defineStore('tab', {
   state: () => {
     return {
       activeTab: '',
@@ -19,7 +19,7 @@ const tabStore = defineStore('app', {
       this.activeTab = activeTab
     },
     removeTab(targetName: string) {
-      if (this.tabOnlyOneOrHome()) return
+      if (targetName === ROOT_PATH) return
       const tabs = this.tabList
       let activeName = this.activeTab
       if (activeName === targetName) {
@@ -36,17 +36,12 @@ const tabStore = defineStore('app', {
       this.tabList = tabs.filter((tab) => tab.name !== targetName)
     },
     closAllTab() {
-      if (this.tabOnlyOneOrHome()) return
       this.tabList = this.tabList.filter((item) => item.key === ROOT_PATH)
     },
     closeOtherTab() {
-      if (this.tabOnlyOneOrHome()) return
       this.tabList = this.tabList.filter(
         (item) => item.key === ROOT_PATH || item.key === this.activeTab
       )
-    },
-    tabOnlyOneOrHome() {
-      return this.activeTab === ROOT_PATH || this.tabList.length === 1
     },
     reset() {
       this.$reset()
@@ -59,4 +54,4 @@ const tabStore = defineStore('app', {
   }
 })
 
-export default tabStore
+export default useTabStore

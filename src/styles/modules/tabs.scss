@@ -1,5 +1,5 @@
 .tab-container {
-  user-select: none; 
+  user-select: none;
   position: relative;
   padding: 0 10px;
   margin-bottom: 10px;
@@ -7,58 +7,58 @@
   overflow: hidden;
   border-top: 1px solid #f6f6f6;
   background-color: #fff;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
-  .el-tabs--card>.el-tabs__header {
-      margin: 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  .el-tabs--card > .el-tabs__header {
+    margin: 0;
   }
-  .el-tabs--card>.el-tabs__header .el-tabs__nav,
-  .el-tabs--card>.el-tabs__header .el-tabs__item,
-  .el-tabs--card>.el-tabs__header {
-      border: none;
+  .el-tabs--card > .el-tabs__header .el-tabs__nav,
+  .el-tabs--card > .el-tabs__header .el-tabs__item,
+  .el-tabs--card > .el-tabs__header {
+    border: none;
   }
-  .el-tabs--card>.el-tabs__header .el-tabs__item:first-child {
-      border-left-width: 1px
+  .el-tabs--card > .el-tabs__header .el-tabs__item:first-child {
+    border-left-width: 1px;
   }
-  .el-tabs--card>.el-tabs__header .el-tabs__item {
-      margin: 0 3px;
-      height: 40px;
-      line-height:40px;
-      font-size: 13px;
-      font-weight: normal;
-      color: #ccc;
-      &.is-active {
-          color: #409EFF;
-          border-bottom: 3px solid #409EFF;
-      }
+  .el-tabs--card > .el-tabs__header .el-tabs__item {
+    margin: 0 3px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #ccc;
+    &.is-active {
+      color: #409eff;
+      border-bottom: 3px solid #409eff;
+    }
   }
   .el-tabs__nav-prev,
   .el-tabs__nav-next {
-      width: 20px;
-      line-height: 34px;
-      font-size: 18px;
-      text-align: center;
+    width: 20px;
+    line-height: 34px;
+    font-size: 18px;
+    text-align: center;
   }
   &__box {
-      position: relative;
-      box-sizing: border-box;
-      padding-right: 106px;
-      width: 100%;
-      &--close {
-          .el-tabs__item {
-              &:first-child {
-                  padding: 0 20px !important;
-                  .el-icon-close {
-                      display: none;
-                  }
-              }
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 106px;
+    width: 100%;
+    &--close {
+      .el-tabs__item {
+        &:first-child {
+          padding: 0 20px !important;
+          .el-icon-close {
+            display: none;
           }
+        }
       }
+    }
   }
   &__menu {
-      position: absolute !important;
-      top: 3px;
-      right: 0;
-      padding: 1px 0 0 15px;
-      box-sizing: border-box;
+    position: absolute !important;
+    top: 3px;
+    right: 0;
+    padding: 1px 0 0 15px;
+    box-sizing: border-box;
   }
 }
