@@ -147,6 +147,7 @@
 
         <el-form-item label="所属部门" prop="deptId">
           <el-tree-select
+            :teleported="false"
             v-model="userFormData.deptId"
             placeholder="请选择所属部门"
             :data="deptOptions"
