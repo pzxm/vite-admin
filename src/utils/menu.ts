@@ -1,4 +1,4 @@
-import { MenuInfo } from '@/types/menu'
+import { MenuInfo } from '@/types/system/menu'
 import { RouteRecordRaw } from 'vue-router'
 const modules = import.meta.glob('../**/*.vue')
 

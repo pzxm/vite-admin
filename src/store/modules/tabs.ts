@@ -1,5 +1,5 @@
 import { ROOT_PATH } from '@/constants/route'
-import { TabPane } from '@/types/tab'
+import { TabPane } from '@/types/store'
 import { defineStore } from 'pinia'
 
 const useTabStore = defineStore('tab', {

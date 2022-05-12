@@ -6,5 +6,11 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from './plugins/element-plus'
 import piniaPersist from 'pinia-plugin-persist'
+import Pagination from './components/Pagination/index.vue'
 
-createApp(App).use(router).use(createPinia().use(piniaPersist)).use(ElementPlus).mount('#app')
+const app = createApp(App)
+app.use(router)
+app.use(createPinia().use(piniaPersist))
+app.use(ElementPlus)
+app.component('Pagination', Pagination)
+app.mount('#app')

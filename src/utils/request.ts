@@ -3,6 +3,7 @@ import userStore from '@/store'
 import { LOGIN_PATH } from '@/constants/route'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import { R } from '@/types/base'
 
 // 环境变量
 const BASE_URL = import.meta.env.VITE_API_BASE_URL
@@ -14,7 +15,8 @@ const request: AxiosInstance = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const accessToken = userStore().accessToken
+    const { appStore } = userStore()
+    const accessToken = appStore.accessToken
     // 统一设置认证token
     if (accessToken) {
       config.headers!.Authorization = `Bearer ${accessToken}`
@@ -32,8 +34,10 @@ request.interceptors.request.use(
 let isRefreshing: boolean = false
 // 响应拦截器
 request.interceptors.response.use(
-  (response: AxiosResponse) => {
-    const { code, msg } = response.data
+  (response: AxiosResponse<R>) => {
+    const result = response.data
+    //  const code = result.code
+    const { code, message } = result
 
     // 正确情况
     if (!code || code === 0) return response
@@ -65,24 +69,18 @@ request.interceptors.response.use(
       return Promise.reject(response)
     }
 
-    ElMessage.error(msg || '请求失败，请稍后重试')
+    ElMessage.error(message || '请求失败，请稍后重试')
     // 手动返回Promise异常
     return Promise.reject(response)
-
-    // if (code && code !== 0) {
-    //   ElMessage.error(msg || '请求失败，请稍后重试')
-    //   // 手动返回Promise异常
-    //   return Promise.reject(response.data)
-    // }
   },
   (error: AxiosError) => {
+    ElMessage.error('系统异常，请稍后重试')
     // 请求错误处理
     return Promise.reject(error)
   }
 )
 
-export default <T = any>(config: AxiosRequestConfig) => {
-  return request(config).then((response) => {
-    return (response.data.data || response.data) as T
-  })
+export default async <T>(config: AxiosRequestConfig): Promise<T> => {
+  const response: AxiosResponse<R<T>> = await request(config)
+  return response.data.data
 }

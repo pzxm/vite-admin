@@ -1,4 +1,4 @@
-import { MenuInfo } from '@/types/menu'
+import { MenuInfo } from '@/types/system/menu'
 import { defineStore } from 'pinia'
 
 const useMenuStore = defineStore('menu', {

@@ -1,7 +1,7 @@
 import useStore from '@/store'
 import 'nprogress/nprogress.css'
 import nprogress from 'nprogress'
-import { TabPane } from '@/types/tab'
+import { TabPane } from '@/types/store'
 import { toRoutes } from '@/utils/menu'
 import { createRouter, createWebHistory } from 'vue-router'
 import { LOGIN_PATH, ROOT_PATH, NOT_FOUND, STATIC_ROUTE as routes } from '@/constants/route'

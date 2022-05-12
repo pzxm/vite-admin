@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { MenuInfo } from '@/types/menu'
+import { MenuInfo } from '@/types/system/menu'
 
 defineProps({
   menus: {

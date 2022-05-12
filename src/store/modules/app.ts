@@ -1,4 +1,4 @@
-import { UserInfo } from '@/api/types/common'
+import { UserInfo } from '@/types/system/user'
 import { defineStore } from 'pinia'
 
 const useAppStore = defineStore('app', {
