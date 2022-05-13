@@ -1,5 +1,5 @@
 <template>
-  <div class="base-container">
+  <base-container>
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="dept-tree">
@@ -51,9 +51,6 @@
         <el-row :gutter="10" class="mb8">
           <el-col :span="1.5">
             <el-button type="primary" plain icon="Plus" @click="handleAdd">新增</el-button>
-          </el-col>
-          <el-col :span="1.5">
-            <el-button type="success" plain icon="Edit" @click="handleUpdate">修改</el-button>
           </el-col>
           <el-col :span="1.5">
             <el-button type="danger" plain icon="Delete" @click="handleDelete">删除</el-button>
@@ -185,7 +182,7 @@
         </div>
       </template>
     </el-dialog>
-  </div>
+  </base-container>
 </template>
 
 <script lang="ts" setup>
@@ -456,12 +453,6 @@ const deptOptions: Tree[] = [
 </script>
 
 <style lang="scss" scoped>
-.base-container {
-  padding: 20px;
-  margin: 10px 10px;
-  height: 100%;
-  background-color: #fff;
-}
 .el-table {
   margin-top: 10px;
 }

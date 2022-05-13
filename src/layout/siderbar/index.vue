@@ -17,7 +17,7 @@
 import useStore from '@/store/index'
 import { computed } from 'vue'
 import MenuItem from '@/layout/siderbar/MenuItem.vue'
-import { MenuInfo } from '@/types/menu'
+import { MenuInfo } from '@/types/system/menu'
 import { useRoute } from 'vue-router'
 
 const { menuStore } = useStore()

@@ -7,14 +7,14 @@
 <script lang="ts" setup>
 import useStore from '@/store/index'
 import { computed } from 'vue'
-const store = useStore()
+const { menuStore } = useStore()
 
 // 获取pinia中的isCollapse属性
-const isCollapse = computed(() => store.isCollapse)
+const isCollapse = computed(() => menuStore.isCollapse)
 
 // 重新设置pinia中的isCollapse
 const changeCollapse = () => {
-  store.setIsCollapse(!isCollapse.value)
+  menuStore.setIsCollapse(!isCollapse.value)
 }
 </script>
 

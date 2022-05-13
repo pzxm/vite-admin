@@ -1,9 +1,9 @@
 <template>
-  <div class="base-container">
-    <user-form v-model="visible" :user-id="userId" @success="handleFormSuccess" />
+  <base-container>
+    <user-form width="500px" v-model="visible" :user-id="userId" @success="handleFormSuccess" />
     <el-button @click="edit" primary> 编辑 </el-button>
     <el-button @click="add" primary> 新增 </el-button>
-  </div>
+  </base-container>
 </template>
 
 <script lang="ts" setup>
@@ -33,11 +33,4 @@ const edit = () => {
 }
 </script>
 
-<style lang="scss" scoped>
-.base-container {
-  padding: 20px;
-  margin: 10px 10px;
-  height: 100%;
-  background-color: #fff;
-}
-</style>
+<style lang="scss" scoped></style>
